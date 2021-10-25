@@ -24,7 +24,7 @@ public class ItemSlot : MonoBehaviour
     }
 
     [SerializeField]
-    private Image icon;
+    private Button icon;
     [SerializeField]
     private TMPro.TextMeshProUGUI itemCountText;
 
@@ -52,17 +52,18 @@ public class ItemSlot : MonoBehaviour
         
         if(this.itemInSlot != null)
         {
-            ItemSlot temp = inventoryManager.FindFreeSlot().GetComponent<ItemSlot>();
-            temp.ItemCount++;
-
-            temp.itemInSlot = itemInSlot;
-
-            temp.RefreshInfo();
-
-            itemCount--;
-            RefreshInfo();
+            if (inventoryManager.FindFreeSlot(itemInSlot))
+            {
+                itemCount--;
+                RefreshInfo();
+            }
+            else
+            {
+                Debug.Log("Nos Space for " + itemInSlot.name);
+            }
         }
     }
+
     public void RefreshInfo()
     {
         if(ItemCount < 1)
@@ -74,7 +75,8 @@ public class ItemSlot : MonoBehaviour
         {
             //update image and text
             itemCountText.text = ItemCount.ToString();
-            icon.sprite = itemInSlot.icon;
+            icon.transform.localScale = new Vector3(itemInSlot.dimentionX, itemInSlot.dimentionY * 2, 0.0f);
+            icon.image.sprite = itemInSlot.icon;
             icon.gameObject.SetActive(true);
         } 
         else

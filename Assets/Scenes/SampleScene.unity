@@ -211,20 +211,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3272399871756723923, guid: 0b667c596ffa1b94ea20e868bf1c0298, type: 3}
   m_PrefabInstance: {fileID: 3749347835164774866}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &174600247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 174600244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c59618fcfbffeb48a38ae9a1f6e36f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemSlotPrefab: {fileID: 9065499456974609210, guid: 7d0c280c18fc7f44d993301e547d625c, type: 3}
-  GridDimensions: {x: 5, y: 5}
 --- !u!114 &174600251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSlots: []
+  itemSlotPrefab: {fileID: 9065499456974609210, guid: 7d0c280c18fc7f44d993301e547d625c, type: 3}
+  GridDimensions: {x: 5, y: 5}
 --- !u!4 &401426165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7167890521768491396, guid: a27e5c69a4b33c3468739da79e95b83d, type: 3}
@@ -1134,6 +1122,22 @@ PrefabInstance:
       propertyPath: Item01
       value: 
       objectReference: {fileID: 11400000, guid: 32277c07679921e4093ffce267ad8942, type: 2}
+    - target: {fileID: 5395119485459324787, guid: 5ca3bd1b1d0dce74fbcd548aab2af64c, type: 3}
+      propertyPath: items.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395119485459324787, guid: 5ca3bd1b1d0dce74fbcd548aab2af64c, type: 3}
+      propertyPath: items.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 32277c07679921e4093ffce267ad8942, type: 2}
+    - target: {fileID: 5395119485459324787, guid: 5ca3bd1b1d0dce74fbcd548aab2af64c, type: 3}
+      propertyPath: items.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: d1cfec75f4f86954b92a563fe5933e5b, type: 2}
+    - target: {fileID: 5395119485459324787, guid: 5ca3bd1b1d0dce74fbcd548aab2af64c, type: 3}
+      propertyPath: items.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 134b977f822d05e4ea7e2e7dae0d5d8d, type: 2}
     - target: {fileID: 5395119485459324791, guid: 5ca3bd1b1d0dce74fbcd548aab2af64c, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0

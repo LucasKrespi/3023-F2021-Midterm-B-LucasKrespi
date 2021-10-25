@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Round Potion
   description: No clue what's inside
+  dimentionX: 2
+  dimentionY: 2
   icon: {fileID: -1686543816739758948, guid: 0657a0b2892d4cf49b09e2fec63a8531, type: 3}
   isConsumable: 1

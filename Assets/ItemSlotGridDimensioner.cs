@@ -9,11 +9,7 @@ public class ItemSlotGridDimensioner : MonoBehaviour
     [SerializeField]
     GameObject itemSlotPrefab;
     [SerializeField]
-    Item Item01;
-    [SerializeField]
-    Item Item02;
-    [SerializeField]
-    Item Item03;
+    List<Item> items;
 
     [SerializeField]
     Vector2Int GridDimensions = new Vector2Int(6, 6);
@@ -25,13 +21,11 @@ public class ItemSlotGridDimensioner : MonoBehaviour
         while (transform.childCount < numCells)
         {
             GameObject newObject = Instantiate(itemSlotPrefab, this.transform);
-
-            if(Item01 != null)
-            {
-                newObject.GetComponent<ItemSlot>().ItemCount++;
-                newObject.GetComponent<ItemSlot>().itemInSlot = Item01;
-                newObject.GetComponent<ItemSlot>().RefreshInfo();
-            }
+            
+            newObject.GetComponent<ItemSlot>().ItemCount++;
+            newObject.GetComponent<ItemSlot>().itemInSlot = items[transform.childCount % 3];
+            newObject.GetComponent<ItemSlot>().RefreshInfo();
+            
         }
     }
 }

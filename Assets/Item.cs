@@ -15,6 +15,8 @@ public class Item : ScriptableObject
 {
     public new string name = "item";
     public string description = "this is an item";
+    public int dimentionX;
+    public int dimentionY;
     
     private int id = -1;
     public int Id

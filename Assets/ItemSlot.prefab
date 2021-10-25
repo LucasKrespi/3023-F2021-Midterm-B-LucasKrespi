@@ -357,7 +357,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInSlot: {fileID: 0}
-  playerInventory: {fileID: 0}
   itemCount: 0
-  icon: {fileID: 1773118916383821808}
+  icon: {fileID: 8345957516670491285}
   itemCountText: {fileID: 6874859556067494432}

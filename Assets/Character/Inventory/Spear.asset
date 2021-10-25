@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 338f75394b047f94c8b1d3e0ecc35512, type: 3}
-  m_Name: Sword
+  m_Name: Spear
   m_EditorClassIdentifier: 
-  name: Sword
-  description: Great for slicing watermelons and pumpkins
-  icon: {fileID: 8097262859823219351, guid: 0657a0b2892d4cf49b09e2fec63a8531, type: 3}
+  name: Spear
+  description: Good for grabbing fruit from high up in a tree
+  dimentionX: 1
+  dimentionY: 3
+  icon: {fileID: 3086127856582126958, guid: 0657a0b2892d4cf49b09e2fec63a8531, type: 3}
   isConsumable: 1
