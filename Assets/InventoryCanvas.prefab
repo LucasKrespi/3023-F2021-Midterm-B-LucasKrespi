@@ -319,8 +319,9 @@ GameObject:
   - component: {fileID: 3272399871756723918}
   - component: {fileID: 3272399871756723921}
   - component: {fileID: 4169463515279471580}
-  - component: {fileID: 3272399871756723926}
   - component: {fileID: 3272399871756723927}
+  - component: {fileID: 3296283117550095922}
+  - component: {fileID: 5541296573261640399}
   m_Layer: 5
   m_Name: InventoryBackgroundPlayer
   m_TagString: Untagged
@@ -409,23 +410,6 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &3272399871756723926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3272399871756723923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b91048d07029d4baa601862375f186, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemSlotPrefab: {fileID: 9065499456974609210, guid: 7d0c280c18fc7f44d993301e547d625c, type: 3}
-  Item01: {fileID: 0}
-  Item02: {fileID: 0}
-  Item03: {fileID: 0}
-  GridDimensions: {x: 5, y: 5}
 --- !u!114 &3272399871756723927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +424,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &3296283117550095922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272399871756723923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b91048d07029d4baa601862375f186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSlotPrefab: {fileID: 0}
+  GridDimensions: {x: 6, y: 6}
+--- !u!156049354 &5541296573261640399
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272399871756723923}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 0
 --- !u!1 &3749347835609666688
 GameObject:
   m_ObjectHideFlags: 0
