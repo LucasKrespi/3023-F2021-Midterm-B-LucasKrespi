@@ -20,7 +20,6 @@ public class ItemSlotGridDimensioner : MonoBehaviour
         while (transform.childCount < numCells)
         {
             GameObject newObject = Instantiate(itemSlotPrefab, this.transform);
-                       
         }
     }
 }

@@ -1,116 +1,144 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ItemBehavior : MonoBehaviour
 {
     [SerializeField]
-    private Item item_scriptableObj;
+    private Item m_itemScriptableObj;
     [SerializeField]
-    private Image item_image;
+    private Image m_itemImage;
 
-    private int numOfSlots;
-    public Vector3 initialPos;
+    private int m_iNumOfSlots;
 
-    private bool isSelectec = false;
+    private bool m_bIsSelectec = false;
     [SerializeField]
-    private bool isPlacable = false;
+    private bool m_bIsPlacable = false;
 
-    public List<ItemSlot> collisionList;
+    public List<ItemSlot> m_collisionList;
+    public List<ItemSlot> m_myTiles;
 
-
-    public GameObject container;
-    public GameObject PlayerBag;
-
+    public GameObject m_gParent;
    
     // Start is called before the first frame update
     void Start()
     {
-        initialPos = transform.position;
-
-        if (item_scriptableObj != null)
+        //iniciate Item based on the scriptable object
+        if (m_itemScriptableObj != null)
         {
-            item_image.sprite = item_scriptableObj.icon;
-            this.transform.localScale = new Vector2(item_scriptableObj.dimentionX, item_scriptableObj.dimentionY) * 0.5f;
-            numOfSlots = (item_scriptableObj.dimentionX * item_scriptableObj.dimentionY);
+            m_itemImage.sprite = m_itemScriptableObj.icon;
+            this.transform.localScale = new Vector2(m_itemScriptableObj.dimentionX, m_itemScriptableObj.dimentionY) * 0.5f;
+            m_iNumOfSlots = (m_itemScriptableObj.dimentionX * m_itemScriptableObj.dimentionY);
         }
 
-        transform.SetParent(container.transform);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isSelectec)
+        if (m_bIsSelectec)
         {
             transform.position = Input.mousePosition;
         }
       
 
-        foreach (ItemSlot i in collisionList)
+        foreach (ItemSlot i in m_collisionList)
         {
 
-            if (collisionList.Count == GetNumOfSlots() && !i.isOccupied)
+            if (m_collisionList.Count == GetNumOfSlots() && !i.isOccupied)
             {
                 i.GetComponent<Image>().color = Color.green;
-                isPlacable = true;
+                m_bIsPlacable = true;
             }
             else
             {
                 i.GetComponent<Image>().color = Color.red;
-                isPlacable = false;
+                m_bIsPlacable = false;
             }
         }
 
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if(isSelectec)
+            if(m_bIsSelectec)
                 transform.rotation *= (Quaternion.Euler(0.0f, 0.0f, -90.0f));
         }
 
-       
     }
-
     public void onClick()
     {
-        isSelectec = !isSelectec;
 
-       
-
-        if (!isPlacable)
+        if (!m_bIsPlacable)
         {
-            transform.position = initialPos;
-            foreach (ItemSlot i in collisionList)
+            if (!m_bIsSelectec)
             {
-                i.isOccupied = false;
+                m_bIsSelectec = true;
+
+                foreach (ItemSlot i in m_myTiles)
+                {
+                    i.isOccupied = false;
+                }
             }
+
+            //if Item is not placable and is not select it will keep the item on mouse pos. to drop item in an inventory it need to be placable
+            //if (!m_bIsSelectec)
+            //{
+            //    m_bIsSelectec = true;
+            //}
+            //foreach (ItemSlot i in m_collisionList)
+            //{
+            //    if(m_myTiles.Contains(i))
+            //        i.isOccupied = false;
+            //}
         }
         else
         {
-           foreach(ItemSlot i in collisionList)
-           {
-                i.isOccupied = true;
-           }
+            if (m_bIsSelectec)
+            {
+                m_myTiles.Clear();
+
+                foreach (ItemSlot i in m_collisionList)
+                {
+                  
+                    i.isOccupied = true;
+              
+                }
+
+                m_myTiles = new List<ItemSlot>(m_collisionList);
+                m_bIsSelectec = false;
+
+            }
+
+
+
+           
+       
         }
     }
 
     public int GetNumOfSlots()
     {
-        return numOfSlots;
+        return m_iNumOfSlots;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collisionList.Add(collision.gameObject.GetComponent<ItemSlot>());
+
+        m_collisionList.Add(collision.gameObject.GetComponent<ItemSlot>());
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collisionList.Remove(collision.gameObject.GetComponent<ItemSlot>());
+        m_collisionList.Remove(collision.gameObject.GetComponent<ItemSlot>());
         collision.gameObject.GetComponent<Image>().color = Color.white;
-      
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        m_bIsPlacable = false;
+    }
+
+
 }
