@@ -35,28 +35,26 @@ public class ItemBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Make item possition = to mouse position when selected
         if (m_bIsSelectec)
         {
             transform.position = Input.mousePosition;
         }
-      
-
-        foreach (ItemSlot i in m_collisionList)
+     
+       
+        //Change Color of slot based if the item can be laced or not
+        if (m_collisionList.Count == GetNumOfSlots() && isNotListOccupied())
         {
-
-            if (m_collisionList.Count == GetNumOfSlots() && isNotListOccupied())
-            {
-                i.GetComponent<Image>().color = Color.green;
-                m_bIsPlacable = true;
-            }
-            else
-            {
-                i.GetComponent<Image>().color = Color.red;
-                m_bIsPlacable = false;
-            }
+            changeListColor(Color.green);
+            m_bIsPlacable = true;
         }
-
-
+        else
+        {
+            changeListColor(Color.red);
+            m_bIsPlacable = false;
+        }
+       
+        // rotate item on mouse right button input
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             if(m_bIsSelectec)
@@ -112,10 +110,6 @@ public class ItemBehavior : MonoBehaviour
         m_collisionList.Remove(collision.gameObject.GetComponent<ItemSlot>());
         collision.gameObject.GetComponent<Image>().color = Color.white;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        m_bIsPlacable = false;
-    }
     
     private bool isNotListOccupied()
     {
@@ -133,5 +127,13 @@ public class ItemBehavior : MonoBehaviour
     public bool returnIsSelected()
     {
         return m_bIsSelectec;
+    }
+
+    private void changeListColor(Color newColor)
+    {
+        foreach (ItemSlot i in m_collisionList)
+        {
+            i.GetComponent<Image>().color = newColor;
+        }
     }
 }

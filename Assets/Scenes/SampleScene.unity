@@ -1061,11 +1061,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4751273632825783355, guid: 4161f95afa2905441bd8ad18038f6a7f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.805
+      value: 0.518
       objectReference: {fileID: 0}
     - target: {fileID: 4751273632825783355, guid: 4161f95afa2905441bd8ad18038f6a7f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.345
+      value: -0.354
       objectReference: {fileID: 0}
     - target: {fileID: 4751273632825783355, guid: 4161f95afa2905441bd8ad18038f6a7f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1175,7 +1175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container: {fileID: 1441134642}
   playerBag: {fileID: 174600244}
-  ocupiedSlots: []
   itensList:
   - {fileID: 1117376122}
   - {fileID: 1120259282}
@@ -1244,6 +1243,14 @@ PrefabInstance:
       propertyPath: itemSlotPrefab
       value: 
       objectReference: {fileID: 9065499456974609210, guid: 7d0c280c18fc7f44d993301e547d625c, type: 3}
+    - target: {fileID: 3296283117550095922, guid: 0b667c596ffa1b94ea20e868bf1c0298, type: 3}
+      propertyPath: GridDimensions.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3296283117550095922, guid: 0b667c596ffa1b94ea20e868bf1c0298, type: 3}
+      propertyPath: GridDimensions.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3749347835609666688, guid: 0b667c596ffa1b94ea20e868bf1c0298, type: 3}
       propertyPath: m_Name
       value: InventoryCanvas
@@ -1417,6 +1424,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ContainerCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5395119484665452974, guid: 5ca3bd1b1d0dce74fbcd548aab2af64c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5395119484665452975, guid: 5ca3bd1b1d0dce74fbcd548aab2af64c, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -1543,11 +1554,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 134b977f822d05e4ea7e2e7dae0d5d8d, type: 2}
     - target: {fileID: 5395119485459324791, guid: 5ca3bd1b1d0dce74fbcd548aab2af64c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 98
       objectReference: {fileID: 0}
     - target: {fileID: 5395119485459324791, guid: 5ca3bd1b1d0dce74fbcd548aab2af64c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 52
       objectReference: {fileID: 0}
     - target: {fileID: 8958471848031447849, guid: 5ca3bd1b1d0dce74fbcd548aab2af64c, type: 3}
       propertyPath: itemCount
