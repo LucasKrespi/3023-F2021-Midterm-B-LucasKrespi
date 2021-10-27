@@ -14,11 +14,9 @@ public class ItemBehavior : MonoBehaviour
     private int m_iNumOfSlots;
 
     private bool m_bIsSelectec = false;
-    [SerializeField]
     private bool m_bIsPlacable = false;
 
     public List<ItemSlot> m_collisionList;
-    public List<ItemSlot> m_myTiles;
 
     public GameObject m_gParent;
    
@@ -32,7 +30,6 @@ public class ItemBehavior : MonoBehaviour
             this.transform.localScale = new Vector2(m_itemScriptableObj.dimentionX, m_itemScriptableObj.dimentionY) * 0.5f;
             m_iNumOfSlots = (m_itemScriptableObj.dimentionX * m_itemScriptableObj.dimentionY);
         }
-
     }
 
     // Update is called once per frame
@@ -47,7 +44,7 @@ public class ItemBehavior : MonoBehaviour
         foreach (ItemSlot i in m_collisionList)
         {
 
-            if (m_collisionList.Count == GetNumOfSlots() && !i.isOccupied)
+            if (m_collisionList.Count == GetNumOfSlots() && isNotListOccupied())
             {
                 i.GetComponent<Image>().color = Color.green;
                 m_bIsPlacable = true;
@@ -60,7 +57,7 @@ public class ItemBehavior : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             if(m_bIsSelectec)
                 transform.rotation *= (Quaternion.Euler(0.0f, 0.0f, -90.0f));
@@ -69,52 +66,32 @@ public class ItemBehavior : MonoBehaviour
     }
     public void onClick()
     {
-
-        if (!m_bIsPlacable)
+        if (m_bIsPlacable)
         {
-            if (!m_bIsSelectec)
-            {
-                m_bIsSelectec = true;
+            m_bIsSelectec = !m_bIsSelectec;
+        }
 
-                foreach (ItemSlot i in m_myTiles)
+        manageNotSelectedButtons();
+    }
+
+    private void manageNotSelectedButtons()
+    {
+        if (m_bIsSelectec)
+        {
+            foreach (GameObject go in FindObjectOfType<InventoryManager>().itensList)
+            {
+                if (go.name != this.name)
                 {
-                    i.isOccupied = false;
+                    go.GetComponent<Button>().enabled = false;
                 }
             }
-
-            //if Item is not placable and is not select it will keep the item on mouse pos. to drop item in an inventory it need to be placable
-            //if (!m_bIsSelectec)
-            //{
-            //    m_bIsSelectec = true;
-            //}
-            //foreach (ItemSlot i in m_collisionList)
-            //{
-            //    if(m_myTiles.Contains(i))
-            //        i.isOccupied = false;
-            //}
         }
         else
         {
-            if (m_bIsSelectec)
+            foreach (GameObject go in FindObjectOfType<InventoryManager>().itensList)
             {
-                m_myTiles.Clear();
-
-                foreach (ItemSlot i in m_collisionList)
-                {
-                  
-                    i.isOccupied = true;
-              
-                }
-
-                m_myTiles = new List<ItemSlot>(m_collisionList);
-                m_bIsSelectec = false;
-
+                go.GetComponent<Button>().enabled = true;
             }
-
-
-
-           
-       
         }
     }
 
@@ -139,6 +116,22 @@ public class ItemBehavior : MonoBehaviour
     {
         m_bIsPlacable = false;
     }
+    
+    private bool isNotListOccupied()
+    {
+        foreach(ItemSlot i in m_collisionList)
+        {
+            if (i.isOccupied)
+            {
+                return false;
+            }
+        }
 
+        return true;
+    }
 
+    public bool returnIsSelected()
+    {
+        return m_bIsSelectec;
+    }
 }

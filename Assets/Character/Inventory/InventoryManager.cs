@@ -10,14 +10,13 @@ public class InventoryManager : MonoBehaviour
     public GameObject container;
     public GameObject playerBag;
 
-    public List<ItemSlot> ocupiedSlots;
 
     [SerializeField]
-    private List<GameObject> itensList;
+    public List<GameObject> itensList;
 
     private void Awake()
     {
-        if(m_Instance == null)
+        if (m_Instance == null)
         {
             m_Instance = this;
         }
@@ -30,27 +29,35 @@ public class InventoryManager : MonoBehaviour
     private void Update()
     {
 
-        foreach(GameObject go in itensList)
+        foreach (GameObject go in itensList)
         {
-            if(go.GetComponent<RectTransform>().localPosition.x > 0)
-            {
-                go.GetComponent<ItemBehavior>().m_gParent = container;
-            }
-            else
-            {
-                go.GetComponent<ItemBehavior>().m_gParent = playerBag;
-            }
-
-            if (go.GetComponent<ItemBehavior>().m_gParent.activeInHierarchy)
-            {
-                go.SetActive(true);
-            }
-            else
-            {
-                go.SetActive(false);
-            }
+            updateParent(go);
         }
     }
+
+    private void updateParent(GameObject go)
+    {
+        if (go.GetComponent<RectTransform>().localPosition.x > 0)
+        {
+            go.GetComponent<ItemBehavior>().m_gParent = container;
+        }
+        else
+        {
+            go.GetComponent<ItemBehavior>().m_gParent = playerBag;
+        }
+
+        if (go.GetComponent<ItemBehavior>().m_gParent.activeInHierarchy)
+        {
+            go.SetActive(true);
+        }
+        else
+        {
+            go.SetActive(false);
+        }
+    }
+
+   
+
     public InventoryManager GetInstance()
     {
         return m_Instance;
